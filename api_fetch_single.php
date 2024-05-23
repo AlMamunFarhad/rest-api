@@ -4,7 +4,7 @@
 include "config.php";
 
 header('Content-Type: application/json');
-header('Acess-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin: *');
 
 $data = json_decode(file_get_contents("php://input"), true);
 $students_id = $data['sid'];

@@ -3,7 +3,9 @@
 include "config.php";
 
 header('Content-Type: application/json');
-header('Acess-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin: *');
+
+
 
 
 $sql = "SELECT * FROM students";
