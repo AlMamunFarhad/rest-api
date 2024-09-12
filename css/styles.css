@@ -127,6 +127,7 @@ h1{
   border-radius: 3px;
   cursor: pointer;
 }
+/*Model Start*/
 #modal{
   background: rgba(0,0,0,0.7);
   position: fixed;

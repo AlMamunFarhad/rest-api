@@ -6,7 +6,6 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>PHP REST API CRUD</title>
   <link rel="stylesheet" href="css/styles.css">
-  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
 </head>
 <body>
   <table id="main" border="0" cellspacing="0">
@@ -41,14 +40,7 @@
             <th width="60px">Edit</th>
             <th width="70px">Delete</th>
           </tr>
-          <tbody id="load-table">
-          <!--   <td>1</td>
-            <td>Farhad</td>
-            <td>Age</td>
-            <td>City</td>
-            <td class="center"><button class="edit-btn" data-eid="">Edit</button></td>
-            <td class="center"><button class="delete-btn" data-id="">Delete</button></td> -->
-          </tbody>
+          <tbody id="load-table"></tbody>
         </table>
       </td>
     </tr>
@@ -87,52 +79,61 @@
     </div>
   </div>
 
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> -->
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript">
 
-
+// My Fatch all Record
 $(document).ready(function(){
 
 function loadTable(){
-  $.ajax({
-    url : 'http://localhost/rest_api/api_fetch_all.php',
-    type : "GET",
-    success : function(data){
-      if (data.status == false) {
-          
-         $("#load-table").append("<tr><td colspan='6'><h2>"+ data.message +"</h2></td></tr>")
 
-      }else{
+$.ajax({
 
-      $.each(data, function(key, value){
-      
-      $("#load-table").append("<tr>"
-        +"<td>"+value.id+"</td>"+
-        "<td>"+value.student_name+"</td>"+
-        "<td>"+value.age+"</td>"+
-        "<td>"+value.city+"</td>"+
-        "<td><button class='edit-btn' data-eid='"+value.id+"'>Edit</button></td>"+
-        "<td><button class='delete-btn' data-id='"+value.id+"'>Delete</button></td>"+
-        "</tr>");
+url: 'http://localhost/rest_api/api_fetch_all.php',
+type: "GET",
+success: function(data){
+console.log(data);
+if(data.status == false){
 
+$("#load-table").append("<tr><td colspan='6'><h2>"+data.message+"</h2></td></tr>");
 
-      });
+}else{
+  $.each(data, function(key, value){
 
+    $("#load-table").append("<tr>"
+      +"<td>"+ value.id+ "</td>"
+      +"<td>"+ value.student_name+ "</td>"
+      +"<td>"+ value.age+ "</td>"
+      +"<td>"+ value.city+ "</td>"
+      +"<td> <button class='edit-btn' data-eid'"+ value.id+ "'>Edit</button></td>"
+      +"<td><button class='delete-btn' data-id='"+ value.id + "'>Delete</button></td>"
+      +"</tr>");
 
-
-      }
-    }
   });
 }
 
+}
+
+});
+
+}
 loadTable();
+
+$(document).on("click",".edit-btn", function() {
+
+$("#modal").show();
+
+});
+
+$("#close-btn").on("click", function() {
+
+$("#modal").hide();
+
 });
 
 
-
-
-
+});
+// My Fatch all Record End
  // $(document).ready(function(){
  //  //Fetch All Records
  //  function loadTable(){ 
@@ -325,6 +326,6 @@ loadTable();
  //  })
  // });
   
- </script> 
+</script>
 </body>
 </html>
